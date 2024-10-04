@@ -1,0 +1,88 @@
+/* Estilos principais */
+body {
+    font-family: 'Cinzel', serif;
+    background-color: #2b1b0f; /* Fundo marrom escuro */
+    color: #f4f1e9; /* Texto claro */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.4em;
+    color: #ffdd00; /* Amarelo dourado */
+    margin-bottom: 20px;
+}
+
+section.settings {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #4a1d1d; /* Vermelho escuro */
+    padding: 30px;
+    border: 2px solid #ff4500; /* Borda laranja avermelhada */
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+form.class-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1.2em;
+    color: #f1d6b0; /* Texto em amarelo suave */
+    margin-bottom: 8px;
+}
+
+input[type="text"], 
+input[type="number"], 
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1px solid #ff4500; /* Borda laranja avermelhada */
+    background-color: #2b1b0f; /* Fundo escuro */
+    color: #f4f1e9; /* Texto claro */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button.btn {
+    background-color: #ff4500; /* Laranja avermelhado */
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+button.btn:hover {
+    background-color: #ff6347; /* Vermelho tomate */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    section.settings {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+}

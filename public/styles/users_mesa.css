@@ -1,0 +1,130 @@
+
+body {
+    font-family: 'Cinzel', serif;
+    background-color: #2b1b0f; 
+    color: #f4f1e9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+h1 {
+    font-size: 2.6em;
+    color: #d43703; 
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #4a1d1d; 
+    padding: 40px;
+    border: 2px solid #ff4500;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 1.3em;
+    color: #f1d6b0;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1px solid #ff4500;
+    background-color: #2b1b0f; 
+    color: #f4f1e9; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    background-color: #ff4500; 
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+    background-color: #ff6347; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #ff4500;
+}
+
+thead th {
+    color: #f4f1e9;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+tbody td {
+    padding: 10px;
+    font-size: 1.1em;
+    color: #f4f1e9;
+    background-color: #2b1b0f;
+    border-bottom: 1px solid #ff6347;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #4a1d1d; 
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    background-color: #2b1b0f;
+    color: #f4f1e9;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    form {
+        gap: 10px;
+    }
+
+    table thead th, table tbody td {
+        font-size: 1em;
+    }
+}

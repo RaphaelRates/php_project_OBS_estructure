@@ -1,0 +1,35 @@
+
+
+services:
+  php-apache:
+    build:
+      context: ..  # Diretório pai
+      dockerfile: docker/Dockerfile.php 
+    ports:
+      - "8000:80"  # Porta 8000 no host mapeada para a porta 80 no contêiner
+    volumes:
+      - ../:/var/www/html  # Mapeia a pasta do projeto para o contêiner
+    networks:
+      - app-network
+
+  postgres:
+    image: bitnami/postgresql:latest
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: bradesco
+      POSTGRES_USER: usuarioteste
+      POSTGRES_PASSWORD: senha1234  # Adicione uma senha para segurança
+      # POSTGRES_HOST_AUTH_METHOD: trust  # Use com cautela, recomendado apenas para desenvolvimento
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Volume persistente para os dados do PostgreSQL
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:

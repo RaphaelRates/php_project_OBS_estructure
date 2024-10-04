@@ -1,0 +1,19 @@
+{
+    "name": "raphael/example_php",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/",
+            "core\\":"core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RaphaelRates",
+            "email": "rafaelrats3@gmail.com"
+        }
+    ],
+    "require": {
+        "league/plates": "^3.5",
+        "google/apiclient": "^2.17"
+    }
+}

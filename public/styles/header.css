@@ -1,0 +1,136 @@
+
+header {
+    background: linear-gradient(135deg, #df1c1c, #f39c12);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+header p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+.menu-desktop ul, .menu-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-desktop ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.menu-desktop a, .menu-mobile a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-desktop a:hover, .menu-mobile a:hover {
+    color: #d20c0c;
+    background-color: rgba(255, 255, 255, 0.952);
+}
+
+/* Efeitos de Hover */
+.menu-desktop a::after, .menu-mobile a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 4px;
+    width: 0;
+    background: #f32512;
+    transition: width 0.4s ease, left 0.4s ease;
+}
+
+.menu-desktop a:hover::after, .menu-mobile a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Menu Mobile */
+.menu-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(51, 51, 51, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+}
+.google-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4285F4; /* Cor do Google */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+    font-size: 18px; /* Tamanho da fonte */
+}
+
+.google-link:hover {
+    background-color: #357AE8; /* Cor ao passar o mouse */
+}
+
+.google-link:active {
+    background-color: #3367D6; /* Cor ao clicar */
+}
+.logout-link {
+    display: inline-block; /* Para que possamos aplicar padding e margin de forma eficaz */
+    padding: 10px 15px; /* Adiciona espaçamento ao redor do texto */
+    background-color: #ff4d4d; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px; /* Arredonda as bordas */
+    font-weight: bold; /* Deixa o texto em negrito */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave ao hover */
+}
+
+.logout-link:hover {
+    background-color: #ff3333; /* Muda a cor de fundo ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu-desktop {
+        display: none; 
+    }
+    .menu-mobile {
+        display: flex;
+    }
+
+    .menu-mobile ul {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .menu-mobile ul li {
+        width: 100%;
+    }
+    .menu-mobile ul li a {
+        width: 100%;
+        padding: 5px;
+        display: inline-block;
+    }
+    .menu-desktop a:hover, .menu-mobile a:hover {
+        color: #d20c0c;
+        background-color: rgba(255, 255, 255, 0.952);
+    }
+}
