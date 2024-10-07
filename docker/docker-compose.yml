@@ -1,5 +1,3 @@
-
-
 services:
   php-apache:
     build:
@@ -21,7 +19,6 @@ services:
       POSTGRES_DB: bradesco
       POSTGRES_USER: usuarioteste
       POSTGRES_PASSWORD: senha1234  # Adicione uma senha para segurança
-      # POSTGRES_HOST_AUTH_METHOD: trust  # Use com cautela, recomendado apenas para desenvolvimento
     volumes:
       - pgdata:/var/lib/postgresql/data  # Volume persistente para os dados do PostgreSQL
     networks:
