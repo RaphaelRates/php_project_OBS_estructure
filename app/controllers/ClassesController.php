@@ -20,50 +20,69 @@ use App\Models\ClasseModel;
             $stmt = $this->classes->getClasses();
             return $this->view('classes', ['classes' => $stmt]);
         }
+        public function formClassUpdate() {
+            $id = $_GET['id'];
+            $stmt = $this->classes->getClassById($id);
+            return $this->view('updateclass', ["class" => $stmt]);
+        }
     
-        public function create() {
+        public function create_class() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Captura os dados do formulário
                 $this->classes->nome = $_POST['nome'] ?? '';
                 $this->classes->descricao = $_POST['descricao'] ?? '';
-                $this->classes->hitPoints = $_POST['hitPoints'] ?? 0;
+                $this->classes->hitPoints = $_POST['hitpoints'] ?? 0;
                 $this->classes->mana = $_POST['mana'] ?? 0;
                 $this->classes->habilidades = $_POST['abilities'] ?? '';
     
                 if ($this->classes->createClass()) {
-                    // Redireciona após a criação bem-sucedida
-                    header("Location: /admin/classes");
+                    header("Location: /admin/add-class");
                     exit();
                 } else {
                     echo "Erro ao criar a classe.";
                 }
             } else {
-                // Renderiza o formulário de criação
                 return $this->view('createclass');
             }
         }
     
-        public function update($id) {
+        public function update() {
+            $index = $_POST['id'];
+            $classe = $this->classes->getClassById($index);
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $this->classes->id = $id;
+                $this->classes->id = $index;
                 $this->classes->nome = $_POST['nome'] ?? '';
                 $this->classes->descricao = $_POST['descricao'] ?? '';
                 $this->classes->hitPoints = $_POST['hitPoints'] ?? 0;
                 $this->classes->mana = $_POST['mana'] ?? 0;
                 $this->classes->habilidades = $_POST['abilities'] ?? '';
-    
+        
+                // Atualiza a classe no banco de dados
                 if ($this->classes->updateClass()) {
-                    // Redireciona após a atualização bem-sucedida
-                    header("Location: /admin/classes");
+                    header("Location: /admin/add-class");
                     exit();
                 } else {
                     echo "Erro ao atualizar a classe.";
                 }
-            } else {
-                // Obtém os dados da classe atual e renderiza o formulário de edição
-                $classe = $this->classes->getClassById($id);
-                return $this->view('editclass', ['classe' => $classe]);
             }
+        
+            // Exibe o formulário de edição com os dados da classe
+            return $this->view('editclass', ['classe' => $classe]);
+        }
+        public function delete() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id = $_POST['id']; // Captura o ID do POST
+                $result = $this->classes->deleteClass($id); // Use $this->classes, não $this->classeModel
+                if ($result) {
+                    header('Location: /admin/add-class');
+                    exit;
+                } else {
+                    // Redirecionar com uma mensagem de erro
+                    header('Location: /admin/add-class?error=Erro ao deletar a classe');
+                    exit;
+                }
+            }
+            
         }
     }
+    
 ?>

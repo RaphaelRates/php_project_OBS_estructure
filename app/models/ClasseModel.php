@@ -3,6 +3,7 @@ namespace App\Models;
 
 include __DIR__ . '/../../core/Model.php';
 
+use PDO;
 use Core\Model;
 
 class ClasseModel extends Model{
@@ -21,6 +22,12 @@ class ClasseModel extends Model{
             $stmt->execute();
             return $stmt; 
         }
+    }
+    public function getClassById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM classes WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function createClass() {
@@ -54,6 +61,21 @@ class ClasseModel extends Model{
         return false;
     }
 
+    function deleteClass($id) {
+        try {
+            $query = "DELETE FROM classes WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                return true; 
+            } else {
+                return false; 
+            }
+        } catch (PDOException $e) {
+            echo "Erro de conexão: " . $e->getMessage();
+        }
+    }
+    
     protected function queryTable(){
         return "
         CREATE TABLE IF NOT EXISTS classes (

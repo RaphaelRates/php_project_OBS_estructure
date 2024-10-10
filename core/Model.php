@@ -8,7 +8,6 @@ use Core\Database;
 class Model {
     protected $db;
     protected $conn; 
-    protected $table;
 
     public function __construct() {
         $this->db = new Database(); 
@@ -19,6 +18,7 @@ class Model {
     }
 
     public function checkAndCreateTable($name, $creator = "") {
+        // Consulta para verificar se a tabela existe
         $query = "
             SELECT EXISTS (
                 SELECT FROM information_schema.tables 
@@ -28,17 +28,17 @@ class Model {
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $exists = $stmt->fetchColumn();
-
+    
         if (!$exists) {
             $createQuery = $creator;
             $stmt = $this->conn->prepare($createQuery);
             if ($stmt->execute()) {
-                return true; //foi criada agorinha
+                return true; // A tabela foi criada
             } else {
-                return false; // deu ruim para criar a tabela
+                return false; // Erro ao criar a tabela
             }
         } else {
-            return true; //já existe
+            return true; // A tabela já existe
         }
     }
 

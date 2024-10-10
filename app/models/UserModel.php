@@ -1,11 +1,13 @@
 <?php
 namespace App\Models;
 
+include __DIR__."/../../core/Model.php";
+
 use Core\Model;
 
 class UserModel extends Model{
 
-    private $table = 'users'; 
+    public $table = 'usuarios'; 
     public $id;
     public $nome;
     public $email;
@@ -14,10 +16,27 @@ class UserModel extends Model{
     public $role; 
 
     public function getUsers() {
-        $query = 'SELECT * FROM ' . $this->table;
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        return $stmt; 
+        $creator = "
+            CREATE TABLE usuarios (
+                id SERIAL PRIMARY KEY,
+                nome VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL UNIQUE,
+                senha VARCHAR(255) NOT NULL,  -- Idealmente, deve ser armazenada de forma criptografada
+                data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                role VARCHAR(50) DEFAULT 'user'
+            );
+        ";
+        if($this->checkAndCreateTable('usuarios', $creator)){
+            try {
+                $query = 'SELECT * FROM ' . $this->table;
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute();
+                return $stmt; 
+            } catch (\Throwable $th) {
+                echo $th;
+            }
+        }
+       
     }
 
     public function createUserDefault() {

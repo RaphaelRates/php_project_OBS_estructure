@@ -8,12 +8,7 @@ use Core\Controller;
 class AdminController extends Controller {
 
     public function dashboard() {
-        // $this->updateLastRoute('/admin');
         return $this->view('dashboard');
-    }
-
-    public function settings() {
-        return $this->view('settings');
     }
 
     public function updateSettings() {

@@ -1,27 +1,13 @@
 <?php $this->layout("admin_master"); ?>
 <?php
 
-if (!isset($_SESSION['usuarios'])) {
-    $_SESSION['usuarios'] = [];
-}
+include __DIR__."/../models/UserModel.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = $_POST['nome'] ?? '';
-    $equipe = $_POST['equipe'] ?? '';
-    $classe = $_POST['classe'] ?? '';
-    $arma = $_POST['arma'] ?? '';
-    $nivel = (int) ($_POST['nivel'] ?? 1);
+use App\Models\UserModel;
 
-    if ($nome && $equipe && $classe && $arma && $nivel) {
-        $_SESSION['usuarios'][] = [
-            'nome' => $nome,
-            'equipe' => $equipe,
-            'classe' => $classe,
-            'arma' => $arma,
-            'nivel' => $nivel
-        ];
-    }
-}
+$usuarioModel = new UserModel(); 
+
+$usuarios = $usuarioModel->getUsers();
 ?>
 <link rel="stylesheet" href="/styles/users_mesa.css">
 <header>
@@ -58,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($_SESSION['usuarios'] as $usuario): ?>
+            <?php if ($usuarios): ?>
+                <?php foreach ($usuarios as $usuario): ?>
                     <tr>
                         <td><?= htmlspecialchars($usuario['nome']) ?></td>
                         <td><?= htmlspecialchars($usuario['equipe']) ?></td>
@@ -67,6 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <td><?= htmlspecialchars($usuario['nivel']) ?></td>
                     </tr>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5">Nenhum usuário encontrado.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </main>

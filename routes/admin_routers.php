@@ -19,30 +19,25 @@ function loadAdminRoute(string $controller, string $action,array $params = []){
 $adminRoutes = [
     'GET' => [
         '/admin' => fn() => loadAdminRoute('AdminController', 'dashboard'),
-        '/admin/settings' => fn() => loadAdminRoute('AdminController', 'settings'),
         '/admin/add-class' => fn() => loadAdminRoute('AdminController', 'addClass'),
         '/admin/add-user' => fn() => loadAdminRoute('AdminController', 'addUser'),
-        '/admin/users' => fn() => loadAdminRoute('AdminController', 'Users'),
+        '/admin/users' => fn() => loadAdminRoute('AdminController', 'users'),
+        '/admin/update-class' => fn() => loadAdminRoute('ClassesController', 'formClassUpdate'),
         '/admin/add-arm' => fn() => loadAdminRoute('AdminController', 'addArm'),
     ],
     'POST' => [
-        '/admin/update-settings' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
         '/admin/add-arm' => fn() => loadAdminRoute('WeaponController', 'createWeapon'),
-        '/admin/add-user' => fn() => loadAdminRoute('', 'updateSettings'),
-        '/admin/add-class' => fn() => load('ClassesController', 'create'),
-        '/admin/update-class/{id}' => function($id) {
-                return load('ClassesController', 'update', [$id]);
-            },
-        '/admin/delete-class/{id}' => function($id) {
-                return load('ClassesController', 'delete', [$id]);
-            },
-        '/admin/delete-arm' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
-        '/admin/delete-user' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
-        '/admin/delete-class' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
-        '/admin/update-arm' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
-        '/admin/update-user' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
-        '/admin/update-class' => fn() => loadAdminRoute('AdminController', 'updateSettings'),
+        '/admin/add-user' => fn() => loadAdminRoute('AdminController', 'createUser'),
+        '/admin/add-class' => fn() => loadAdminRoute('ClassesController', 'create_class'),
+        '/admin/update-class' => fn() => loadAdminRoute('ClassesController', 'update'),
+        '/admin/delete-class' => fn() => loadAdminRoute('ClassesController', 'delete'),
     ],
+    'UPDATE' => [
+
+    ],
+    'DELETE' => [
+
+    ]
 ];
 
 

@@ -49,10 +49,10 @@ try {
 
 } catch (\Throwable $th) {
 
-    // echo "Erro: " . $th->getMessage() . "<br>";
-    // echo "Arquivo: " . $th->getFile() . "<br>";
-    // echo "Linha: " . $th->getLine() . "<br>";
-    require __DIR__ . '/../app/views/404.php';
+    echo "Erro: " . $th->getMessage() . "<br>";
+    echo "Arquivo: " . $th->getFile() . "<br>";
+    echo "Linha: " . $th->getLine() . "<br>";
+    // require __DIR__ . '/../app/views/404.php';
 }
 ?>
 <script>

@@ -13,5 +13,8 @@ use Core\Controller;
         public function showWeapon($weaponName) {
             return $this->view('singleweapon', ['weaponName' =>$weaponName]);
         }
+        public function create_weapon(){
+            return $this->view('create_arms');
+        }
     }
 ?>
